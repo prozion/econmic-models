@@ -9,7 +9,7 @@ unicorn_ontology a:owl/Ontology ns:https://purl.org/unicorn_ontology# dc/title:"
 		ta ns:https://purl.org/tabtree/abstract#
 		time ns:https://purl.org/tabtree/time#
 	classes +a:owl/Class +hi-inv-rel:subclass-of
-		ЕдиницыИзмерения one-of:`kg,l,m3,i`
+		ЕдиницыИзмерения one-of:`kg,l,m,m2,ga,m3,i`
 		ЛинияПроизводства d:"Цепочка связанных с друг другом производств, базирующаяся на определенном природном ресурсе (альтернативная классификация индустрий)"
 		Объект
 			ПриродныйРесурс d:"Природный объект, еще не подвергшийся преобразованию человеком"
@@ -37,6 +37,7 @@ unicorn_ontology a:owl/Ontology ns:https://purl.org/unicorn_ontology# dc/title:"
 					ПродуктПотребления d:"Продукт, который непосредственно удовлетворяет физиологические потребности (еда, одежда, лекарство)"
 				НедвижимыйПродукт d:"Измененный природный объект"
 					Разработка d:"Разработка природного объекта, для получения из него природного сырья. Включает в себя штреки, избы, места складирования, дороги и т.д."
+				СвязующийЭлемент
 		Помещение
 			Комната
 		Производитель
@@ -52,6 +53,7 @@ unicorn_ontology a:owl/Ontology ns:https://purl.org/unicorn_ontology# dc/title:"
 	properties +a:rdf/Property +hi-inv-rel:subproperty-of
 		craft domain:Продукт range:Ремесло
 		dpd domain:Продукт range:t/Number d:"Количество продукта, необходимое человеку в день (demand per day)"
+		depr domain:rdf/Statement range:t/Number d:"Амортизация станка или инструмента (depreciation)"
 		fac domain:Продукт range:Сооружение d:"Капитальное сооружение, необходимое для производства"
 		gar domain:Продукт range:Отход
 		i domain:`Продукт,Помещение` range:t/PositiveInteger d:"Количество экземпляров продукта или другого счетного объекта"

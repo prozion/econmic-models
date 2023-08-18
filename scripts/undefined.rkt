@@ -26,6 +26,7 @@
                                               ))
 
 (define classes (->> unicorn hash-values (filter (λ (item) (index-of? (flatten (list ($ a item))) "owl/Class"))) (map (λ (item)  ($ __id item)))))
+(define alts (->> unicorn hash-values (filter-map (λ (item) ($ alt item))) flatten cleanmap remove-duplicates))
 (define defined-ids (append
                       (remove-duplicates
                         (append
@@ -37,12 +38,15 @@
 (define all-ids (->> unicorn hash-keys))
 (define all-refs (->> unicorn hash-values (map hash-values) flatten remove-duplicates (filter-not hash?) (filter-not string-in-string?) (filter entity?)))
 
-(define undefined-ids (minus (join all-ids all-refs) defined-ids))
+(define undefined-ids (minus (join all-ids all-refs) (join defined-ids alts)))
 
 ; (--- unicorn)
 
-(--- "Undefined entities:")
-(---- undefined-ids)
+(if (empty? undefined-ids)
+  (--- "No undefined entities")
+  (begin
+    (--- "Undefined entities:")
+    (---- undefined-ids)))
 
 ; (--- (->> unicorn hash-values (filter (λ (item) (equal? ($ __id item) "Производитель")))))
 ; (->> unicorn hash-values (filter (λ (item) (index-of? (flatten (list ($ a item))) "owl/Class"))) (map (λ (item)  ($ __id item))))
